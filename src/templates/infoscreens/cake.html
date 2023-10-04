@@ -1,0 +1,51 @@
+{% extends './template.html' %}
+{% load static %}
+
+{% block head %}
+  <script src="{% static 'js/infoscreens/cake.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="h-full w-full grid grid-rows-6 grid-cols-3 gap-8 p-16">
+    <div class="col-span-2 row-span-1 flex items-center">
+      <img class="h-full bottom-0 object-bottom" src="{% static 'img/spillhuset_hvit.png' %}"></img>
+      <h1 id="queue-name" class="text-9xl font-bold truncate m-auto">{{ queue.name }}</h1>
+    </div>
+    <div class="col-span-1 row-span-6 overflow-hidden h-full border-l-2 border-white pl-8">
+      <table class="w-full table-auto border-spacing-y-4 border-separate">
+        <thead>
+          <tr>
+            <th class="sr-only">Posisjon</th>
+            <th class="text-left text-8xl">Navn</th>
+            <th class="text-8xl text-right">ETA</th>
+          </tr>
+        </thead>
+        <tbody id="queued-list">
+          {% for person in queue.queued %}
+            <tr>
+              <td class="text-7xl">{{ person.queue_position_fixed }}.</td>
+              <td class="text-7xl truncate max-w-xs">{{ person.name }}</td>
+              <td class="text-7xl text-right whitespace-nowrap">{% if person.eta_to_play_in_minutes %}{{ person.eta_to_play_in_minutes }}m{% else %}Nå{% endif %}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div id="currently-playing-list" class="col-span-2 row-span-3 my-auto flex justify-around">
+      {% for person in queue.currently_playing %}
+        <div>
+          <h3 class="text-8xl text-center font-bold">{{ person.name }}</h3>
+          {% if person.paused_at %}
+            <p class="text-6xl text-center">Pauset</p>
+          {% else %}
+            <p class="text-6xl text-center time-countdown" data-time-left-seconds="{{ person.time_left_in_seconds }}">...</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="col-span-2 row-span-2">
+      <h2 class="text-9xl font-bold text-center">Estimert ventetid</h2>
+      <p id="avg-wait-time" class="text-7xl text-center">1 time, 20 minutter</p>
+    </div>
+  </div>
+{% endblock %}

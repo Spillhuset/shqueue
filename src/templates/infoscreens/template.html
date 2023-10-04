@@ -1,0 +1,19 @@
+{% extends '../skeleton.html' %}
+{% load static %}
+
+{% load static tailwind_tags %}
+{% block tailwind %}
+  {% tailwind_css %}
+{% endblock %}
+
+{% block googlefonts %}
+  <link rel="stylesheet" href="{% static 'fonts/b612:wght@400;700.css' %}">
+{% endblock %}
+
+{% block body %}
+  <body class="{% if preview %}bg-black{% else %}bg-transparent{% endif %} h-screen w-screen text-white font-['B612']">
+    {% block content %}
+      empty screen
+    {% endblock %}
+  </body>
+{% endblock %}

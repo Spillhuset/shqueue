@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine@sha256:2ccd6655060d7b06c71f86094e8c7a28bdcc8a80b43baca4b1dabb29cff138a2
+    restart: unless-stopped
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DATABASE: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+  nginx:
+    build:
+      context: .
+      target: runtime-nginx
+    restart: unless-stopped
+    ports:
+      - ${PORT}:80
+    depends_on:
+      - app
