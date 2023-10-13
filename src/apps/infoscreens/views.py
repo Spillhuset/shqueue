@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.core import serializers
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 from ..shqueue.models import *
 
+@xframe_options_exempt
 def show_infoscreen(request, queue_id, type):
   queue = GameQueue.objects.get(id=queue_id)
   preview = request.GET.get("preview", None) is not None
