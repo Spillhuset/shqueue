@@ -18,8 +18,8 @@ async function updateQueue(init = false) {
     <div>
       <h3 class="text-8xl text-center font-bold">${person.name}</h3>
       ${person.paused ?
-        `<p class="text-6xl text-center">Pauset</p>` :
-        `<p class="text-6xl text-center time-countdown" data-time-left-seconds="${person.time_left_in_seconds - 1}">${person.time_left_in_seconds > 0 ? secondsToTimeLeft(person.time_left_in_seconds) : "Spiller på overtid"}</p>`
+        `<p class="text-5xl text-center">Pauset</p>` :
+        `<p class="text-5xl text-center time-countdown" data-time-left-seconds="${person.time_left_in_seconds - 1}">${person.time_left_in_seconds > 0 ? secondsToTimeLeft(person.time_left_in_seconds) : "Spiller på overtid"}</p>`
       }
     </div>
   `).join("")
@@ -27,9 +27,9 @@ async function updateQueue(init = false) {
   // queued
   document.getElementById("queued-list").innerHTML = data.queued.map((person, index) => `
     <tr>
-      <td class="text-7xl">${index + 1}.</td>
-      <td class="text-7xl truncate max-w-xs">${person.name}</td>
-      <td class="text-7xl text-right whitespace-nowrap">${person.eta_to_play_in_seconds > 0 ? `${Math.ceil(person.eta_to_play_in_seconds / 60)} min` : "Nå"}</td>
+      <td class="text-6xl">${index + 1}.</td>
+      <td class="text-6xl truncate max-w-xs">${person.name}</td>
+      <td class="text-6xl text-right whitespace-nowrap">${person.eta_to_play_in_seconds > 0 ? `${Math.ceil(person.eta_to_play_in_seconds / 60)} min` : "Nå"}</td>
     </tr>
   `).join("")
 
