@@ -40,6 +40,11 @@ async function updateQueue(init = false) {
     avgWaitTimeHours && `${avgWaitTimeHours} timer`,
     avgWaitTimeMinutes && `${avgWaitTimeMinutes} minutter`
   ].filter(Boolean).join(", ") || "Under et minutt"
+
+  // paused
+  const status = document.getElementById("status");
+  if (data.active) status.innerText = "";
+  else status.innerText = "Inaktiv";
 }
 
 function updateTimeCountdowns() {

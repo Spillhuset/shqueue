@@ -47,5 +47,6 @@
       <h2 class="text-9xl font-bold text-center">Estimert ventetid</h2>
       <p id="avg-wait-time" class="text-7xl text-center">...</p>
     </div>
+    <div id="status" class="absolute rotate-12 text-red-600 font-bold text-[24rem] uppercase m-44">{% if not queue.active %}Inaktiv{% endif %}</div>
   </div>
 {% endblock %}
