@@ -13,7 +13,7 @@ services:
 
   asgi:
     build: .
-    command: daphne core.asgi:application -b 0.0.0.0 -p 80 -v 3
+    command: daphne core.asgi:application -b 0.0.0.0 -p 80
     restart: unless-stopped
     env_file:
       - ./.env
