@@ -1,5 +1,5 @@
 const url = new URL(window.location.href);
-url.protocol = url.protocol.replace(/https?/, "ws");
+url.protocol = url.protocol.replace("http", "ws");
 url.pathname = "/ws" + url.pathname.replace(/\/[^/]+$/, "");
 
 const ws = new WebSocket(url.href);
