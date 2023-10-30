@@ -58,5 +58,4 @@ COPY ./src ./src
 COPY --from=builder /app/src/static_built/staticfiles*.json /app/src/static_built/
 
 WORKDIR /app/src
-CMD ["gunicorn", "core.wsgi", "--bind", "0.0.0.0:80", "--workers", "3"]
 EXPOSE 80

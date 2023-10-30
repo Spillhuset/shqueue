@@ -1,15 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  updateQueue(true);
-  setInterval(updateQueue, 10000);
-
   updateTimeCountdowns();
   setInterval(updateTimeCountdowns, 1000);
 });
 
-async function updateQueue(init = false) {
-  const data = await fetch("data").then(res => res.json());
-  console.log(data);
-
+async function updateQueue(data) {
   // div
   document.getElementById("queue-name").innerHTML = data.name;
 
@@ -34,12 +28,7 @@ async function updateQueue(init = false) {
   `).join("")
 
   // avg wait time
-  const avgWaitTimeHours = Math.floor(data.avg_wait_time_seconds / 3600);
-  const avgWaitTimeMinutes = Math.floor(data.avg_wait_time_seconds / 60) % 60;
-  document.getElementById('avg-wait-time').innerHTML = [
-    avgWaitTimeHours && `${avgWaitTimeHours} timer`,
-    avgWaitTimeMinutes && `${avgWaitTimeMinutes} minutter`
-  ].filter(Boolean).join(", ") || "Under et minutt"
+  document.getElementById("avg-wait-time").dataset.avgWaitTimeSeconds = String(data.avg_wait_time_seconds);
 
   // paused
   const status = document.getElementById("status");
@@ -56,13 +45,22 @@ function updateTimeCountdowns() {
     if (timeLeftSeconds > 0) element.innerHTML = secondsToTimeLeft(timeLeftSeconds);
     else element.innerHTML = `Spiller på overtid`;
   })
+
+  const element = document.getElementById("avg-wait-time");
+  const avgWaitTimeSeconds = parseInt(element.dataset.avgWaitTimeSeconds);
+  element.dataset.avgWaitTimeSeconds -= 1;
+
+  if (avgWaitTimeSeconds > 60) element.innerHTML = secondsToTimeLeft(avgWaitTimeSeconds, false);
+  else element.innerHTML = `Under et minutt`;
 }
 
-function secondsToTimeLeft(seconds) {
-  const minutes = Math.floor(seconds / 60);
+function secondsToTimeLeft(seconds, includeSeconds = true) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor(seconds / 60) % 60;
   const remainingSeconds = seconds % 60;
   return [
+    hours && `${hours} time${hours == 1 ? "" : "r"}`,
     minutes && `${minutes} min`,
-    `${remainingSeconds} sek`
+    includeSeconds && remainingSeconds && `${remainingSeconds} sek`
   ].filter(Boolean).join(", ")
 }

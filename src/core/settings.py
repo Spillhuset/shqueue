@@ -35,6 +35,8 @@ CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS", "http://127.0.0.1,
 # Application definition
 
 INSTALLED_APPS = [
+  # websockets
+  'daphne',
   # built-in
   'django.contrib.admin',
   'django.contrib.auth',
@@ -42,8 +44,6 @@ INSTALLED_APPS = [
   'django.contrib.sessions',
   'django.contrib.messages',
   'django.contrib.staticfiles',
-  # permissions
-  'guardian',
   # spillhuset
   'shauth.apps.SHauthConfig',
   'apps.shqueue.apps.SHqueueConfig',
@@ -71,7 +71,6 @@ MIDDLEWARE = [
 
 AUTHENTICATION_BACKENDS = (
   'django.contrib.auth.backends.ModelBackend',
-  'guardian.backends.ObjectPermissionBackend',
 )
 
 ROOT_URLCONF = 'core.urls'
@@ -97,9 +96,21 @@ TEMPLATES = [
   },
 ]
 
+# Channels
+
 ASGI_APPLICATION = "core.asgi.application"
 WSGI_APPLICATION = 'core.wsgi.application'
-
+CHANNEL_LAYERS = {
+  'default': {
+    "BACKEND": "channels_redis.core.RedisChannelLayer",
+    "CONFIG": {
+      "hosts": [(
+        os.environ.get("REDIS_HOST"),
+        os.environ.get("REDIS_PORT", 6379)
+      )],
+    },
+  },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -156,12 +167,6 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# Guardian
-
-GUARDIAN_RENDER_403 = True
-GUARDIAN_TEMPLATE_403 = BASE_DIR / 'templates' / 'errors' / '403.html'
 
 
 # shauthy like a melody in my head

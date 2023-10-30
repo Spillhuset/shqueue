@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="{% static 'fonts/b612:wght@400;700.css' %}">
 {% endblock %}
 
+{% block head %}
+  <script src="{% static 'js/infoscreens/ws.js' %}"></script>
+  {% block infoscreen_script %}<!-- no infoscreen script -->{% endblock %}
+{% endblock %}
+
 {% block body %}
   <body class="{% if preview %}bg-black{% else %}bg-transparent{% endif %} h-screen w-screen text-white font-['B612']">
     {% block content %}

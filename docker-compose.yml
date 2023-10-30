@@ -1,13 +1,25 @@
 version: '3.8'
 
 services:
-  app:
+  wsgi:
     build: .
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:80 --workers 3
     restart: unless-stopped
     env_file:
       - ./.env
     depends_on:
       - db
+      - redis
+
+  asgi:
+    build: .
+    command: daphne core.asgi:application -b 0.0.0.0 -p 80 -v 3
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - redis
 
   db:
     image: postgres:16-alpine@sha256:acf5271bbecd4b8733f4e93959a8d2b536a57aeee6cc4b6a71890aaf646425b8
@@ -19,6 +31,10 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 
+  redis:
+    image: redis:5-alpine
+    restart: unless-stopped
+
   nginx:
     build:
       context: .
@@ -27,4 +43,5 @@ services:
     ports:
       - ${PORT}:80
     depends_on:
-      - app
+      - asgi
+      - wsgi
