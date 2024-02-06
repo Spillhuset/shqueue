@@ -306,13 +306,13 @@ files = [
 
 [[package]]
 name = "crispy-tailwind"
-version = "1.0.0"
-description = "A tailwind package for Django Crispy Forms"
+version = "1.0.1"
+description = "Tailwind CSS for Django Crispy Forms"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "crispy-tailwind-1.0.0.tar.gz", hash = "sha256:947e1125faad2e3b1bf678204e37f847b36749c1c274fc8d82e57ff74aa96945"},
-    {file = "crispy_tailwind-1.0.0-py3-none-any.whl", hash = "sha256:7cae27002f26212b2ced5bbc253062af1fd6a1b71e2b25a88720b5ca9b306572"},
+    {file = "crispy-tailwind-1.0.1.tar.gz", hash = "sha256:4f074d94f6cb7e3bbf8577005a739cd599974e27326f61e6c00ae3c4bacd39f1"},
+    {file = "crispy_tailwind-1.0.1-py3-none-any.whl", hash = "sha256:00022ebad08bc859bcbfb022af1aee9d245e74209aaccf5b33089b93f9226097"},
 ]
 
 [package.dependencies]
@@ -1075,4 +1075,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.12.1"
-content-hash = "ee3cd64b41c0114da31528e35607eadc810e85e7d8a33f84a4c6e1d29f54380e"
+content-hash = "44c9490bd1a6e14655279c9edae99bf94038064dfbb8ad848bca100a7dccd43b"
