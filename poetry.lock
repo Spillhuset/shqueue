@@ -486,12 +486,12 @@ reload = ["django-browser-reload (>=1.12.1,<2.0.0)"]
 
 [[package]]
 name = "fontawesomefree"
-version = "6.5.1"
+version = "6.6.0"
 description = "Font Awesome Free"
 optional = false
 python-versions = "*"
 files = [
-    {file = "fontawesomefree-6.5.1-py3-none-any.whl", hash = "sha256:8dec4a2ee37bf8e53379ebbf0d38cefec4e06c7c9227f59af39dbb7b1632817b"},
+    {file = "fontawesomefree-6.6.0-py3-none-any.whl", hash = "sha256:599b574431c9bd92ed5fc054d1045a07c42335da36c17884f2b934755eef9089"},
 ]
 
 [[package]]
@@ -1067,4 +1067,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.12.7"
-content-hash = "66254c8f7208d698c829bde644823ede339df8b54e1652802053dbab3b0d3454"
+content-hash = "845ca4ad4c508ac0706ad53f1ad1acb2b2031b18c686ec17c4ac1031a2c5fa3a"
