@@ -30,7 +30,7 @@ def auth(request):
           print("exception:", e)
           pass
 
-    return redirect("https://shauth.but-it-actually.works/?state=" + settings.SHAUTH_SYSTEM_NAME);
+    return redirect("https://oauth.spillhuset.app/?state=" + settings.SHAUTH_SYSTEM_NAME);
 
 def apply_groups(user, flags):
   user.groups.clear()
