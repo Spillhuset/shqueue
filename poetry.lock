@@ -605,13 +605,13 @@ tinycss2 = ">=1.2.1"
 
 [[package]]
 name = "django-tailwind"
-version = "4.4.1"
+version = "4.4.2"
 description = "Tailwind CSS Framework for Django projects"
 optional = false
 python-versions = ">=3.11"
 files = [
-    {file = "django_tailwind-4.4.1-py3-none-any.whl", hash = "sha256:91e0036247d88412698aa587138adcc3ff0e1d4de5e5189b1de38f435899a018"},
-    {file = "django_tailwind-4.4.1.tar.gz", hash = "sha256:12cea9710ca5f7f2cbd2f3f5c7ec201b21ad3031fe8049c1ad2db36124063e2d"},
+    {file = "django_tailwind-4.4.2-py3-none-any.whl", hash = "sha256:0e4a2836cb36e8952700457d049fadb8743583017cef80fa3a374f8597c289f4"},
+    {file = "django_tailwind-4.4.2.tar.gz", hash = "sha256:b3a3eb2d22cbb8c17565898fb68ccedcf806542b04fe4107bdfec7035d582819"},
 ]
 
 [package.dependencies]
@@ -1302,4 +1302,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.14.1"
-content-hash = "5428f7e646b93745acfe20ce5c38348f88f28249015cbd7ec5644a7aafed677d"
+content-hash = "dee06516b08d14a290ded9697705a5c01e97bd992b17bfd57ea43bedc9cc391d"
