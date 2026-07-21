@@ -18,7 +18,7 @@ django-google-fonts = "0.0.3"
 django-tailwind = {extras = ["reload"], version = "4.4.2"}
 crispy-tailwind = "1.0.3"
 django-crispy-forms = "2.5"
-daphne = "4.2.2"
+daphne = "4.2.3"
 channels = "4.3.2"
 channels-redis = "4.3.0"
 
